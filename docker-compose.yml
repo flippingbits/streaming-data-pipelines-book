@@ -27,7 +27,7 @@ services:
       - "127.0.0.1:8123:8123"
       - "127.0.0.1:9000:9000"
     environment:
-      - CLICKHOUSE_DB=online_shop
+      - CLICKHOUSE_DB=clickhouse
       - CLICKHOUSE_USER=clickhouse
       - CLICKHOUSE_PASSWORD=clickhouse
       - CLICKHOUSE_DEFAULT_ACCESS_MANAGEMENT=1
