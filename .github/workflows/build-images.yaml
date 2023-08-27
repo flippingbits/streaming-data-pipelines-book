@@ -20,7 +20,7 @@ jobs       :
           failure-threshold: error
   push_connect_image:
     name: Build and push connect image
-    needs: build
+    needs: verify-files
     runs-on: ubuntu-latest
     steps:
     -   name: Login to Docker Hub
@@ -36,7 +36,7 @@ jobs       :
           docker push flippingbits/connect:${GITHUB_SHA}
   push_postgres_image:
     name: Build and push Postgres image
-    needs: build
+    needs: verify-files
     runs-on: ubuntu-latest
     steps:
     -   name: Login to Docker Hub
