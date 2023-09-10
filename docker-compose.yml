@@ -37,12 +37,17 @@ services:
     ports:
       - 8083:8083
     links:
+      - clickhouse
+      - fake-analytics-api
       - kafka-1
       - postgres
-      - clickhouse
     environment:
       - BOOTSTRAP_SERVERS=kafka-1:9092
       - GROUP_ID=1
       - CONFIG_STORAGE_TOPIC=my_connect_configs
       - OFFSET_STORAGE_TOPIC=my_connect_offsets
       - STATUS_STORAGE_TOPIC=my_connect_statuses
+  fake-analytics-api:
+    image: flippingbits/fake-analytics-api:latest
+    ports:
+      - 8080:8080
