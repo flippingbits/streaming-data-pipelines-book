@@ -3,6 +3,8 @@ services:
   kafka:
     image: confluentinc/confluent-local:7.5.0
     container_name: kafka
+    networks:
+      - streaming-data-pipelines-book
     ports:
      - 9092:9092
      - 9093:9093
@@ -14,6 +16,8 @@ services:
   postgres:
     image: flippingbits/postgres-case-study:latest
     container_name: postgres
+    networks:
+      - streaming-data-pipelines-book
     ports:
       - 5432:5432
     environment:
@@ -23,6 +27,8 @@ services:
     image: clickhouse/clickhouse-server
     container_name: clickhouse
     hostname: clickhouse
+    networks:
+      - streaming-data-pipelines-book
     ports:
       - "127.0.0.1:8123:8123"
       - "127.0.0.1:9000:9000"
@@ -34,6 +40,8 @@ services:
   connect:
     image: flippingbits/connect:latest
     container_name: connect
+    networks:
+      - streaming-data-pipelines-book
     ports:
       - 8083:8083
     links:
@@ -49,5 +57,12 @@ services:
       - STATUS_STORAGE_TOPIC=my_connect_statuses
   fake-analytics-api:
     image: flippingbits/fake-analytics-api:latest
+    container_name: fake_analytics_api
+    networks:
+      - streaming-data-pipelines-book
     ports:
       - 8080:8080
+
+networks:
+  streaming-data-pipelines-book:
+    name: streaming-data-pipelines-book
