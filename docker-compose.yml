@@ -13,6 +13,9 @@ services:
      - KAFKA_CONTROLLER_QUORUM_VOTERS=1@kafka:29093
      - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://kafka:29092,PLAINTEXT_HOST://localhost:9092
      - KAFKA_LISTENERS=PLAINTEXT://kafka:29092,CONTROLLER://kafka:29093,PLAINTEXT_HOST://0.0.0.0:9092
+     - KAFKA_LOG_DIRS=/var/lib/kafka/data
+    volumes:
+      - kafka-data:/var/lib/kafka/data
   postgres:
     image: flippingbits/postgres-case-study:latest
     container_name: postgres
@@ -66,3 +69,7 @@ services:
 networks:
   streaming-data-pipelines-book:
     name: streaming-data-pipelines-book
+
+volumes:
+  kafka-data:
+    name: streaming-data-pipelines-book-kafka-data
