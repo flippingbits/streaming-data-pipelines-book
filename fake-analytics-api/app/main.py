@@ -9,7 +9,8 @@ Faker.seed(42)
 app = FastAPI()
 fake = Faker()
 
-devices = ["Chrome", "Edge", "Firefox"]
+domains = ["excellenttoys.com", "excellenttoys.co.uk", "excellenttoys.de"]
+devices = ["Chrome", "Edge", "Firefox", "bot"]
 pages = ["/", "/cart", "/contact", "/privacy-policy", "/products"]
 timestamp_format = "%Y-%m-%dT%H:%M:%S.%f"
 
@@ -31,7 +32,7 @@ def generate_fake_visit(since):
 
     return {
         "device": random.choice(devices),
-        "domain": "excellenttoys.org",
+        "domain": random.choice(domains),
         "ip": fake.ipv4(),
         "page": random.choice(pages),
         "timestamp": since_ts.strftime(timestamp_format),
